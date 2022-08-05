@@ -1,0 +1,25 @@
+ALTER TABLE `addresses` ADD `alt_phone` VARCHAR(255) NULL AFTER `phone`;
+
+CREATE TABLE `order_process` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`order_id` INT(10) NOT NULL DEFAULT '0',
+	`order_items` JSON NOT NULL,
+	`shipping_details` JSON NOT NULL,
+	`process_date` DATETIME NULL DEFAULT NULL,
+	`process_type` VARCHAR(15) NOT NULL DEFAULT '0' COLLATE 'utf8mb4_general_ci',
+	`created_by` INT(10) NOT NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT NULL,
+	`updated_at` DATETIME NULL DEFAULT NULL,
+	`deleted_at` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=11
+;
+
+ALTER TABLE `order_process`
+	ADD COLUMN `invoice_prefix` VARCHAR(50) NOT NULL DEFAULT '0' AFTER `order_id`;
+
+ALTER TABLE `order_process`
+	ADD COLUMN `invoice_number` INT NOT NULL DEFAULT 0 AFTER `invoice_prefix`;

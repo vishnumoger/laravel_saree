@@ -1,0 +1,9 @@
+Production:
+    stage: deploy
+    tags:
+        - "icore-ftp"
+    script: 
+        - git ftp push -u dsrftp@dsr.icoredeals.com -p $FTP_PASSWD "ftp://icoredeals.com/"
+    only:
+        - master
+    environment: Production
